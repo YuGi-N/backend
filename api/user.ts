@@ -26,6 +26,7 @@ router.post('/register', async (req, res) => {
 });
 
 router.post('/login', async (req, res) => {
+    
     const { email, password } = req.body;
 
     try {
@@ -44,13 +45,16 @@ router.post('/login', async (req, res) => {
     } catch (error) {
         res.status(400).send('Unable to find user');
     }
+
 });
 
 router.post('/logout', async (req, res) => {
+    
     if(req.session){
         req.session = null;
         res.status(200).send('Successfully logged out');
     }
+
 })
 
 export { router as UserRouter };
