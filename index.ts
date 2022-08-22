@@ -11,7 +11,7 @@ const app = express();
 
 const corsOptions: CorsOptions = {
     origin: process.env.CLIENT_URL,
-    allowedHeaders: ['Content-Type'],
+    allowedHeaders: ['Content-Type', 'Access-Control-Allow-Origin', 'Access-Control-Allow-Credentials'],
     credentials: true,
 }
 
@@ -22,7 +22,8 @@ app.use(cookieSession({
     keys: [process.env.COOKIE_SECRET!],
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' || false,
-    sameSite: 'none',
+    sameSite: 'lax',
+    path: '/',
 }));
 
 app.use(bodyParser.json());
