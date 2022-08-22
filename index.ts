@@ -15,8 +15,10 @@ const corsOptions: CorsOptions = {
     credentials: true,
 }
 
+app.set("trust proxy", 1);
 app.use(cookieSession({
     name: 'session',
+    domain: process.env.CLIENT_URL,
     keys: [process.env.COOKIE_SECRET!],
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' || false,
