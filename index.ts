@@ -22,7 +22,7 @@ app.use(cookieSession({
     keys: [process.env.COOKIE_SECRET!],
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' || false,
-    sameSite: 'lax',
+    sameSite: 'none',
 }));
 
 app.use(bodyParser.json());
