@@ -1,7 +1,12 @@
 import { Router } from 'express';
+import authMiddleware from '../middlewares/authMiddleware';
 import { userCollection } from '../utils/conn';
 
 const router = Router();
+
+router.get('/', authMiddleware, (req, res) => {
+    res.status(200).send('User is logged in');
+});
 
 router.post('/register', async (req, res) => {
     
