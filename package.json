@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev index.ts"
+    "postinstall": "tsc",
+    "dev": "ts-node-dev index.ts",
+    "start": "node dist/index.js"
   },
   "keywords": [],
   "author": "",
