@@ -3,6 +3,7 @@ import bodyParser from 'body-parser';
 import cors, { CorsOptions } from 'cors';
 import { API } from './api';
 import cookieSession from 'cookie-session';
+import cookieParser from 'cookie-parser';
 import 'dotenv/config';
 
 const PORT = process.env.PORT || 3000;
@@ -19,9 +20,12 @@ app.use(cookieSession({
     keys: [process.env.COOKIE_SECRET!],
     httpOnly: true,
     secure: process.env.NODE_ENV === 'production' || false,
+    sameSite: 'lax',
 }));
+
 app.use(bodyParser.json());
 app.use(cors(corsOptions));
+app.use(cookieParser());
 app.use('/api', API);
 
 app.listen(PORT, () => {
